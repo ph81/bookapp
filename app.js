@@ -19,6 +19,8 @@ const app = express();
 // Securing the app and setting HTTP headers
 app.use(helmet());
 
+app.use(compression()); //Compress all routes
+
 //Set up default mongoose connection
 //const mongoDB = 'mongodb://localhost:27017/local_library';
 const mongoDB = process.env.MONGO_URI;
@@ -40,7 +42,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.use(compression()); //Compress all routes
+
 
 //static folder 
 app.use(express.static(path.join(__dirname, 'public')));
